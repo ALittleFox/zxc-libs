@@ -1,13 +1,40 @@
 {
-  "name": "@zxc",
+  "name": "@zxc/libs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:utils": "pnpm --filter utils build",
+    "build:cli": "pnpm --filter cli build",
+    "cli:init": "zxc-cli init",
+    "cli:info": "zxc-cli info",
+
+    "lint:biome": "biome check",
+    "spellcheck": "cspell --dot --gitignore --color --cache --show-suggestions",
+    "format:biome": "biome format --write",
+    "commit": "git-cz",
+    "prepare": "husky"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.2",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@types/node": "^24.3.0",
+    "@zxc/cli": "workspace:*",
+    "commitizen": "^4.3.1",
+    "cspell": "^9.2.0",
+    "cz-git": "^1.12.0",
+    "husky": "^9.1.7",
+    "nx": "^19.8.14",
+    "typescript": "^5.9.2"
   },
   "keywords": [],
-  "author": "",
+  "author": "Docscript <zxcdocscript@gmail.com>",
   "license": "ISC",
   "packageManager": "pnpm@10.15.0"
 }

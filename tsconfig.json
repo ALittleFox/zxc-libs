@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": [
+      "dom",
+      "es2017"
+    ],
+    "strict": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "allowJs": true,
+    "noEmit": true,
+  },
+  "include": [
+    "packages/**/src/**/*.{ts,tsx}",
+    "components/**/src/**/*.{ts,tsx}",
+    "apps/**/src/**/*.{ts,tsx}",
+    "tsup.config.ts",
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/dist"
+  ]
+}

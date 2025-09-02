@@ -1,0 +1,82 @@
+{
+  "extends": ["@commitlint/config-conventional"],
+
+  "prompt": {
+    "settings": {},
+    "messages": {
+      "type": "选择你要提交的类型 :",
+      "scope": "选择一个提交范围（可选）:",
+      "customScope": "请输入自定义的提交范围 :",
+      "subject": "填写简短精炼的变更描述 :\n",
+      "body": "填写更加详细的变更描述（可选）。使用 \"|\" 换行 :\n",
+      "breaking": "列举非兼容性重大的变更（可选）。使用 \"|\" 换行 :\n",
+      "footerPrefixsSelect": "选择关联issue前缀（可选）:",
+      "customFooterPrefixs": "输入自定义issue前缀 :",
+      "footer": "列举关联issue (可选) 例如: #31, #I3244 :\n",
+      "confirmCommit": "是否提交或修改commit ?"
+    },
+    "types": [
+      {
+        "value": "wip",
+        "name": "wip: 💪  Work in Progress | 开发中",
+        "emoji": "🚀 "
+      },
+      {
+        "value": "feat",
+        "name": "feat: ✨  Features | 新功能",
+        "emoji": "✨ "
+      },
+      { "value": "fix", "name": "fix: 🐛  Bug Fixes | 修复", "emoji": "🐛 " },
+      {
+        "value": "docs",
+        "name": "docs: 📝  Documentation | 文档变更",
+        "emoji": "📝 "
+      },
+      {
+        "value": "style",
+        "name": "style:💄  Styles | 代码样式",
+        "emoji": "💄 "
+      },
+      {
+        "value": "refactor",
+        "name": "refactor: ♻️  Code Refactoring | 代码重构",
+        "emoji": "♻️ "
+      },
+      {
+        "value": "ci",
+        "name": "ci: 🛠 CI options | CI 配置",
+        "emoji": "🛠 "
+      },
+
+      {
+        "value": "test",
+        "name": "test: ✅  Tests | 测试",
+        "emoji": "✅ "
+      },
+      {
+        "value": "build",
+        "name": "build: 📦  Build System | 打包构建",
+        "emoji": "📦 "
+      },
+
+      {
+        "value": "chore",
+        "name": "chore: 🔨  Chore | 构建/工程依赖/工具",
+        "emoji": "🔨 "
+      },
+      {
+        "value": "revert",
+        "name": "revert: ⏪️  Revert | 回退",
+        "emoji": "⏪️ "
+      },
+      {
+        "value": "other",
+        "name": "other: 🧩  other | 其他",
+        "emoji": "🧩 "
+      }
+    ],
+    "useEmoji": true,
+    "confirmColorize": true,
+    "emojiAlign": "center"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "githubusercontent",
+    "mkdirp",
+    "streetsidesoftware",
+    "tsmerge",
+    "typs",
+    "visualstudio",
+    "vsmarketplacebadge"
+  ],
+  "ignorePaths": [
+    "node_modules/**",
+    "dist/**",
+    "build/**",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**"
+  ],
+  "flagWords": [],
+  "files": [
+    "packages/**/src/**/*.{js,jsx,ts,tsx}",
+    "packages/**/test/**/*.{js,jsx,ts,tsx}"
+  ],
+}
