@@ -5,6 +5,8 @@
       "dom",
       "es2017"
     ],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "strict": true,
     "strictNullChecks": true,
     "esModuleInterop": true,
@@ -16,14 +18,14 @@
     "noEmit": true,
   },
   "include": [
-    "packages/**/src/**/*.{ts,tsx}",
-    "components/**/src/**/*.{ts,tsx}",
-    "apps/**/src/**/*.{ts,tsx}",
+    "packages/**/*",
+    "components/**/*",
     "tsup.config.ts",
   ],
   "exclude": [
     "node_modules",
     "dist",
-    "**/dist"
+    "**/dist",
+    "**/templates/**/*"
   ]
 }
