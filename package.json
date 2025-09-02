@@ -9,7 +9,7 @@
     "cli:init": "zxc-cli init",
     "cli:info": "zxc-cli info",
 
-    "lint:biome": "biome check",
+    "lint:biome": "biome check . 2>&1 | tee .errors/biome_errors.txt",
     "spellcheck": "cspell --dot --gitignore --color --cache --show-suggestions",
     "format:biome": "biome format --write",
     "commit": "git-cz",
