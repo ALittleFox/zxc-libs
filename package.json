@@ -4,21 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    
-    "lint:biome": "biome check . 2>&1 | tee .errors/biome_errors.txt",
+    "lint:biome": "biome check --no-errors-on-unmatched --staged",
     "spellcheck": "cspell --dot --gitignore --color --cache --show-suggestions",
     "format:biome": "biome format --write",
     "commit": "git-cz",
     "prepare": "husky",
-    
     "graph": "nx graph",
-    
     "build:cli": "nx build @zxc/cli",
-    "build:all":"nx run-many --target=build --all",
-    "build:affected":"nx affected --target=build",
-    "reset":"nx reset",
-    "dev:cli":"nx dev @zxc/cli"
+    "build:all": "nx run-many --target=build --all",
+    "build:affected": "nx affected --target=build",
+    "reset": "nx reset",
+    "dev:cli": "nx run @zxc/cli:dev:cli"
   },
+ "lint-staged": {
+    "*.{js,ts,jsx,tsx,json}": [
+      "biome format --write --staged --no-errors-on-unmatched",
+      "biome check --staged --no-errors-on-unmatched"
+    ]
+  },
+
   "config": {
     "commitizen": {
       "path": "node_modules/cz-git"
@@ -28,14 +32,19 @@
     "@biomejs/biome": "2.2.2",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
+    "@nx/js": "^19.8.14",
+    "@swc-node/register": "~1.9.1",
+    "@swc/core": "~1.5.7",
+    "@swc/helpers": "~0.5.11",
     "@types/node": "^24.3.0",
     "@zxc/cli": "workspace:*",
     "commitizen": "^4.3.1",
     "cspell": "^9.2.0",
     "cz-git": "^1.12.0",
     "husky": "^9.1.7",
-    "typescript": "^5.9.2",
-    "nx": "19.8.14"
+    "lint-staged": "^16.1.6",
+    "nx": "19.8.14",
+    "typescript": "^5.9.2"
   },
   "keywords": [],
   "author": "Docscript <zxcdocscript@gmail.com>",
