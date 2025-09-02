@@ -1,0 +1,21 @@
+{
+  "name": "@zxc/utils",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [],
+  "dependencies": {
+    "consola": "^3.4.2",
+    "tsup": "^8.5.0"
+  },
+  "author": "Docscript <zxcdocscript@gmail.com>",
+  "license": "ISC",
+  "packageManager": "pnpm@10.13.1"
+}

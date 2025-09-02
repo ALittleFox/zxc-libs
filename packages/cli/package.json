@@ -1,13 +1,32 @@
 {
-  "name": "cli",
+  "name": "@zxc/cli",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "dev": "pnpm -w dev"
+    "build": "tsup",
+    "dev": "tsup --watch"
   },
-  "keywords": [],
-  "author": "",
+  "bin": {
+    "zxc-cli": "./bin/zxc"
+  },
+  "files": [
+    "bin",
+    "index.js"
+  ],
+  "dependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/prompts": "^2.4.9",
+    "@zxc/utils": "workspace:*",
+    "commander": "^14.0.0",
+    "fs-extra": "^11.3.1",
+    "giget": "^2.0.0",
+    "picocolors": "^1.1.1",
+    "prompts": "^2.4.2",
+    "tsup": "^8.5.0"
+  },
+  "keywords": ["cli", "zxc", "zxc-cli" ,"@zxc/cli"],
+  "author": "Docscript <zxcdocscript@gmail.com>",
   "license": "ISC",
   "packageManager": "pnpm@10.15.0"
 }
