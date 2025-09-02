@@ -10,14 +10,6 @@
     "visualstudio",
     "vsmarketplacebadge"
   ],
-  "ignorePaths": [
-    "node_modules/**",
-    "dist/**",
-    "build/**",
-    "**/node_modules/**",
-    "**/dist/**",
-    "**/build/**"
-  ],
   "flagWords": [],
   "files": [
     "packages/**/src/**/*.{js,jsx,ts,tsx}",

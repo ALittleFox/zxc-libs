@@ -5,15 +5,20 @@
   "main": "index.js",
   "scripts": {
     "build:utils": "pnpm --filter utils build",
-    "build:cli": "pnpm --filter cli build",
     "cli:init": "zxc-cli init",
     "cli:info": "zxc-cli info",
-
     "lint:biome": "biome check . 2>&1 | tee .errors/biome_errors.txt",
+    "lint:nx": "nx biome check",
     "spellcheck": "cspell --dot --gitignore --color --cache --show-suggestions",
     "format:biome": "biome format --write",
     "commit": "git-cz",
-    "prepare": "husky"
+    "prepare": "husky",
+
+    "graph": "nx graph",
+    "build:cli": "nx build @zxc/cli",
+    "build:all":"nx run-many --target=build --all",
+    "build:affected":"nx affected --target=build",
+    "reset":"nx reset"
   },
   "config": {
     "commitizen": {
@@ -30,8 +35,8 @@
     "cspell": "^9.2.0",
     "cz-git": "^1.12.0",
     "husky": "^9.1.7",
-    "nx": "^19.8.14",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "nx": "19.8.14"
   },
   "keywords": [],
   "author": "Docscript <zxcdocscript@gmail.com>",
