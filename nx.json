@@ -29,6 +29,7 @@
       ]
     },
     "dev": {
+      "executor": "nx:run-commands",
       "dependsOn": [
         {
           "projects": "self",
@@ -38,7 +39,11 @@
           "projects": "dependencies",
           "target": "dev"
         }
-      ]
+      ],
+      "options": {
+        "command": "tsup --watch",
+        "cwd": "{projectRoot}"
+      }
     }
   }
 }
