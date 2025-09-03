@@ -1,5 +1,5 @@
 {
-  "name": "@zxc/utils",
+  "name": "lib",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -12,13 +12,10 @@
   ],
   "keywords": [],
   "dependencies": {
-    "@types/fs-extra": "^11.0.4",
     "consola": "^3.4.2",
-    "fs-extra": "^11.3.1",
-    "picocolors": "^1.1.1",
     "tsup": "^8.5.0"
   },
-  "author": "Docscript <zxcdocscript@gmail.com>",
+  "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.13.1"
 }

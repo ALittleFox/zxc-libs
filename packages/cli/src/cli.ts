@@ -7,6 +7,6 @@ export const defineConfig = () => {
 
 export const runCLI = () => {
   createCommand()
-
+  //
   program.parse(process.argv)
 }
