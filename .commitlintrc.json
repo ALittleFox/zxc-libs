@@ -78,5 +78,25 @@
     "useEmoji": true,
     "confirmColorize": true,
     "emojiAlign": "center"
+  },
+
+  "rules": {
+    "type-enum": [
+      2,
+      "always",
+      [
+        "wip",
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "test",
+        "revert",
+        "chore",
+        "other",
+        "ci"
+      ]
+    ]
   }
 }
