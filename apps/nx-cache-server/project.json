@@ -1,0 +1,20 @@
+{
+  "name": "@zxc/nx-cache-server",
+  "root": "apps/nx-cache-server",
+  "targets": {
+     "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bun --hot run apps/nx-cache-server/src/index.ts"
+      }
+      
+    },
+     "prod": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bun run apps/nx-cache-server/src/index.ts"
+      }
+      
+    }
+  }
+}
