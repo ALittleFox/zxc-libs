@@ -1,0 +1,89 @@
+name: CI/CD on Version Change
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10.x
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Get changed package versions
+        id: check_version
+        run: |
+          CHANGED_PACKAGES=""
+          # 找到所有在最新 commit 中被修改的 package.json 文件
+          git diff --name-only HEAD^ HEAD | while read file; do
+            if [[ $file == */package.json ]]; then
+              OLD_VERSION=$(git show HEAD^:$file | jq -r '.version')
+              NEW_VERSION=$(jq -r '.version' $file)
+
+              if [ "$OLD_VERSION" != "$NEW_VERSION" ]; then
+                # 提取项目名，并处理 libs/ 或 apps/ 下的路径
+                PROJECT_NAME=$(echo $file | sed -E 's|.*(libs|apps)/([^/]+)/package.json|\2|')
+                if [ -n "$PROJECT_NAME" ]; then
+                  CHANGED_PACKAGES+=" $PROJECT_NAME"
+                fi
+              fi
+            fi
+          done
+
+          echo "Detected version changes in: ${CHANGED_PACKAGES}"
+          # 将结果存储到环境变量中供后续步骤使用
+          echo "changed_packages=${CHANGED_PACKAGES}" >> $GITHUB_ENV
+
+      - name: Build and Publish affected packages
+        if: env.changed_packages != ''
+        run: |
+          # 配置 npm registry，并使用 NPM_TOKEN 环境变量进行认证
+          pnpm config set //registry.npmjs.org/:_authToken ${NODE_AUTH_TOKEN}
+          
+          # 循环遍历所有版本变更的包
+          for pkg in $CHANGED_PACKAGES; do
+            echo "Building package: $pkg"
+            # 使用 Nx 构建受影响的包
+            pnpm nx run $pkg:build
+            
+            # 找到构建产物目录，通常在 dist/
+            BUILD_PATH=$(find dist -type d -name "$pkg" -maxdepth 2)
+
+            if [ -d "$BUILD_PATH" ]; then
+              echo "Publishing package from: $BUILD_PATH"
+              # 切换到构建目录，并执行 pnpm publish
+              # pnpm publish 会自动将 package.json 中的 workspace:* 替换为真实版本
+              cd $BUILD_PATH
+              pnpm publish --access public --no-git-checks
+            else
+              echo "Build directory for $pkg not found."
+            fi
+          done
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
